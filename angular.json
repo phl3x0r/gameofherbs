@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "gameofherbs"
+  "defaultProject": "gameofherbs",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
