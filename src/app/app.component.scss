@@ -7,6 +7,12 @@ mat-tab-group {
   justify-content: space-between;
   align-items: center;
 }
+
+.mat-tab-label {
+  height: 10vh !important;
+  flex: 1 1 auto;
+}
+
 .container {
   height: 90vh;
   display: flex;
