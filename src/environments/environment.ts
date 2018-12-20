@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyCp7loycKoXhUdp9rvqppfTGJ4fLmB1YNY',
+    authDomain: 'gameofherbs.firebaseapp.com',
+    databaseURL: 'https://gameofherbs.firebaseio.com',
+    projectId: 'gameofherbs',
+    storageBucket: 'gameofherbs.appspot.com',
+    messagingSenderId: '1079981353454'
+  }
 };
 
 /*

@@ -6,9 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import { reducers, metaReducers } from './store/reducers';
-import { AppEffects } from './store/effects/app.effects';
+import { reducers, metaReducers } from './store';
+import { AppEffects } from './store/app.effects';
 import { MatTabsModule, MatIconModule } from '@angular/material';
 import { GreenhouseModule } from './greenhouse';
 import { HomeModule } from './home';
@@ -28,6 +31,9 @@ import { WardModule } from './ward';
       logOnly: environment.production
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    AngularFireModule.initializeApp(environment.firebase, 'Game of Herbs'),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     MatTabsModule,
     MatIconModule,
 
