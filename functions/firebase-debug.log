@@ -1,0 +1,123 @@
+[debug] [2018-12-21T15:08:03.866Z] ----------------------------------------------------------------------
+[debug] [2018-12-21T15:08:03.868Z] Command:       C:\bec\tools\node\node.exe C:\Users\wen\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2018-12-21T15:08:03.869Z] CLI Version:   6.1.2
+[debug] [2018-12-21T15:08:03.869Z] Platform:      win32
+[debug] [2018-12-21T15:08:03.869Z] Node Version:  v10.13.0
+[debug] [2018-12-21T15:08:03.871Z] Time:          Fri Dec 21 2018 16:08:03 GMT+0100 (GMT+01:00)
+[debug] [2018-12-21T15:08:03.871Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-21T15:08:03.886Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-21T15:08:03.887Z] > authorizing via signed-in user
+[debug] [2018-12-21T15:08:03.887Z] [iam] checking project gameofherbs for permissions ["firebase.projects.get"]
+[debug] [2018-12-21T15:08:03.889Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/gameofherbs:testIamPermissions  
+
+[debug] [2018-12-21T15:08:04.909Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-21T15:08:04.911Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/gameofherbs  
+ 
+[debug] [2018-12-21T15:08:05.878Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Workspace\gameofherbs'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-12-21T15:08:06.926Z] Fetching environment
+[debug] [2018-12-21T15:08:06.929Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1079981353454:getServerAppConfig  
+ 
+[debug] [2018-12-21T15:08:06.930Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1079981353454/clients/_:getWebAppConfig  
+ 
+[debug] [2018-12-21T15:08:07.196Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-21T15:08:07.197Z] Starting @google-cloud/functions-emulator
+[debug] [2018-12-21T15:08:07.312Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: dist
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2018-12-21T15:08:09.803Z] Parsing function triggers
+[warn] !  functions: Failed to load functions source code. Ensure that you have the latest SDK by running npm i --save firebase-functions inside the functions directory.
+[debug] [2018-12-21T15:08:09.916Z] Error during trigger parsing:  Error parsing triggers: Cannot find module 'C:\Workspace\gameofherbs\functions'
+
+Try running "npm install" in your functions directory before deploying.
+[warn] !  functions: Error from emulator. Error parsing triggers: Cannot find module 'C:\Workspace\gameofherbs\functions'
+
+Try running "npm install" in your functions directory before deploying.
+[debug] [2018-12-21T15:08:09.918Z] 
+[info] Shutting down...
+[debug] [2018-12-21T15:09:58.632Z] ----------------------------------------------------------------------
+[debug] [2018-12-21T15:09:58.634Z] Command:       C:\bec\tools\node\node.exe C:\Users\wen\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2018-12-21T15:09:58.634Z] CLI Version:   6.1.2
+[debug] [2018-12-21T15:09:58.634Z] Platform:      win32
+[debug] [2018-12-21T15:09:58.634Z] Node Version:  v10.13.0
+[debug] [2018-12-21T15:09:58.636Z] Time:          Fri Dec 21 2018 16:09:58 GMT+0100 (GMT+01:00)
+[debug] [2018-12-21T15:09:58.636Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-21T15:09:58.648Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-21T15:09:58.649Z] > authorizing via signed-in user
+[debug] [2018-12-21T15:09:58.649Z] [iam] checking project gameofherbs for permissions ["firebase.projects.get"]
+[debug] [2018-12-21T15:09:58.651Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/gameofherbs:testIamPermissions  
+
+[debug] [2018-12-21T15:09:59.653Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-21T15:09:59.655Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/gameofherbs  
+ 
+[debug] [2018-12-21T15:10:00.629Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Workspace\gameofherbs'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-12-21T15:10:01.631Z] Fetching environment
+[debug] [2018-12-21T15:10:01.635Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1079981353454:getServerAppConfig  
+ 
+[debug] [2018-12-21T15:10:01.635Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1079981353454/clients/_:getWebAppConfig  
+ 
+[debug] [2018-12-21T15:10:02.116Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-21T15:10:02.117Z] Starting @google-cloud/functions-emulator
+[debug] [2018-12-21T15:10:02.204Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: dist
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2018-12-21T15:10:04.223Z] Parsing function triggers
+[warn] !  functions: Failed to load functions source code. Ensure that you have the latest SDK by running npm i --save firebase-functions inside the functions directory.
+[debug] [2018-12-21T15:10:04.355Z] Error during trigger parsing:  Error parsing triggers: Cannot find module 'C:\Workspace\gameofherbs\functions'
+
+Try running "npm install" in your functions directory before deploying.
+[warn] !  functions: Error from emulator. Error parsing triggers: Cannot find module 'C:\Workspace\gameofherbs\functions'
+
+Try running "npm install" in your functions directory before deploying.
+[debug] [2018-12-21T15:10:04.357Z] 
+[info] Shutting down...
+[debug] [2018-12-21T15:12:40.885Z] ----------------------------------------------------------------------
+[debug] [2018-12-21T15:12:40.887Z] Command:       C:\bec\tools\node\node.exe C:\Users\wen\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2018-12-21T15:12:40.888Z] CLI Version:   6.2.0
+[debug] [2018-12-21T15:12:40.888Z] Platform:      win32
+[debug] [2018-12-21T15:12:40.888Z] Node Version:  v10.13.0
+[debug] [2018-12-21T15:12:40.890Z] Time:          Fri Dec 21 2018 16:12:40 GMT+0100 (GMT+01:00)
+[debug] [2018-12-21T15:12:40.890Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-21T15:12:40.911Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-21T15:12:40.911Z] > authorizing via signed-in user
+[debug] [2018-12-21T15:12:40.912Z] [iam] checking project gameofherbs for permissions ["firebase.projects.get"]
+[debug] [2018-12-21T15:12:40.913Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/gameofherbs:testIamPermissions  
+
+[debug] [2018-12-21T15:12:41.909Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-21T15:12:41.910Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/gameofherbs  
+ 
+[debug] [2018-12-21T15:12:42.875Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Workspace\gameofherbs'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-12-21T15:12:44.303Z] Fetching environment
+[debug] [2018-12-21T15:12:44.307Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1079981353454:getServerAppConfig  
+ 
+[debug] [2018-12-21T15:12:44.308Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1079981353454/clients/_:getWebAppConfig  
+ 
+[debug] [2018-12-21T15:12:44.749Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-21T15:12:44.749Z] Starting @google-cloud/functions-emulator
+[debug] [2018-12-21T15:12:44.863Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: dist
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2018-12-21T15:12:47.332Z] Parsing function triggers
+[warn] !  functions: Failed to load functions source code. Ensure that you have the latest SDK by running npm i --save firebase-functions inside the functions directory.
+[debug] [2018-12-21T15:12:47.464Z] Error during trigger parsing:  Error parsing triggers: Cannot find module 'C:\Workspace\gameofherbs\functions'
+
+Try running "npm install" in your functions directory before deploying.
+[warn] !  functions: Error from emulator. Error parsing triggers: Cannot find module 'C:\Workspace\gameofherbs\functions'
+
+Try running "npm install" in your functions directory before deploying.
+[debug] [2018-12-21T15:12:47.466Z] 
+[info] Shutting down...

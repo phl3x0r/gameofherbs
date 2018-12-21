@@ -9,10 +9,25 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './store';
-import { AppEffects } from './store/app.effects';
-import { MatTabsModule, MatIconModule } from '@angular/material';
+import { AppEffects } from './store/grower.effects';
+import {
+  MatTabsModule,
+  MatIconModule,
+  MatButtonModule
+} from '@angular/material';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faCog,
+  faSeedling,
+  faWarehouse,
+  faHome,
+  faHandHoldingUsd
+} from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { GreenhouseModule } from './greenhouse';
 import { HomeModule } from './home';
 import { MarketModule } from './market';
@@ -34,8 +49,11 @@ import { WardModule } from './ward';
     AngularFireModule.initializeApp(environment.firebase, 'Game of Herbs'),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireFunctionsModule,
+    FontAwesomeModule,
     MatTabsModule,
     MatIconModule,
+    MatButtonModule,
 
     // app modules
     GreenhouseModule,
@@ -47,4 +65,15 @@ import { WardModule } from './ward';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    library.add(
+      faCog,
+      faSeedling,
+      faWarehouse,
+      faHome,
+      faHandHoldingUsd,
+      faGoogle
+    );
+  }
+}

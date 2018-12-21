@@ -8,7 +8,8 @@
   $accent: map-get($theme, accent);
 
   // Define any styles affected by the theme.
-  .container {
+  .container,
+  .login-container {
     // Use mat-color to extract individual colors a palette.
     background-color: mat-color($primary, lighter);
   }

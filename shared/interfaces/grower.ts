@@ -1,3 +1,8 @@
-export interface Grower {
-  id: string;
+export interface Grower extends GrowerModel {
+  loading: boolean;
+  updating: boolean;
+}
+
+export interface GrowerModel {
+  uid?: string;
 }

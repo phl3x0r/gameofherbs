@@ -1,32 +1,45 @@
-<mat-tab-group headerPosition="below" backgroundColor="primary">
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="nav-icon">all_inbox</mat-icon>
-    </ng-template>
-    <div class="container"><app-propagation></app-propagation></div>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="nav-icon">spa</mat-icon>
-    </ng-template>
-    <div class="container"><app-ward></app-ward></div>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="nav-icon">home</mat-icon>
-    </ng-template>
-    <div class="container"><app-home></app-home></div>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label
-      ><mat-icon class="nav-icon">wb_sunny</mat-icon></ng-template
+<ng-container *ngIf="(afAuth.user | async) as user; else showLogin">
+  <button mat-fab class="sticky-burger">
+    <mat-icon aria-label="Example icon-button with a heart icon"
+      >favorite</mat-icon
     >
-    <div class="container"><app-greenhouse></app-greenhouse></div>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="nav-icon">monetization_on</mat-icon>
-    </ng-template>
-    <div class="container"><app-market></app-market></div>
-  </mat-tab>
-</mat-tab-group>
+  </button>
+  <mat-tab-group headerPosition="below" backgroundColor="primary">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="nav-icon" fontSet="fa" fontIcon="warehouse"></mat-icon>
+      </ng-template>
+      <div class="container"><app-propagation></app-propagation></div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <fa-icon [icon]="['fas', 'seedling']"></fa-icon>
+      </ng-template>
+      <div class="container"><app-ward></app-ward></div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="nav-icon">home</mat-icon>
+      </ng-template>
+      <div class="container"><app-home></app-home></div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label
+        ><mat-icon class="nav-icon">wb_sunny</mat-icon></ng-template
+      >
+      <div class="container"><app-greenhouse></app-greenhouse></div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="nav-icon">monetization_on</mat-icon>
+      </ng-template>
+      <div class="container"><app-market></app-market></div>
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>
+<ng-template #showLogin>
+  <div class="login-container">
+    <p>Please login.</p>
+    <button (click)="login()">Login with Google</button>
+  </div>
+</ng-template>
