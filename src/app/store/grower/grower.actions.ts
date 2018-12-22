@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Grower, GrowerModel } from '@shared/interfaces';
+import { Grower } from '@shared/interfaces';
 import { DocumentSnapshot } from '@angular/fire/firestore';
 
 export enum GrowerActionTypes {
@@ -18,13 +18,13 @@ export class LoadGrower implements Action {
 export class UpdateGrower implements Action {
   readonly type = GrowerActionTypes.UPDATE_GROWER;
   constructor(
-    public payload: { snapshot: DocumentSnapshot<GrowerModel>; uid: string }
+    public payload: { snapshot: DocumentSnapshot<Grower>; uid: string }
   ) {}
 }
 
 export class SaveGrower implements Action {
   readonly type = GrowerActionTypes.SAVE_GROWER;
-  constructor(public payload: { grower: GrowerModel }) {}
+  constructor(public payload: { grower: Grower }) {}
 }
 
 export class NewGrower implements Action {

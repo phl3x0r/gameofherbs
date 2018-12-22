@@ -1,10 +1,10 @@
 import { GrowerActionTypes, GrowerActions } from './grower.actions';
-import { Grower } from '@shared/interfaces';
+import { GrowerState } from './grower.model';
 
 export const initialState = { updating: false, loading: false };
 
 export function growerReducer(
-  state: Grower = initialState,
+  state: GrowerState = initialState,
   action: GrowerActions
 ) {
   switch (action.type) {

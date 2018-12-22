@@ -3,7 +3,10 @@ import { Store } from '@ngrx/store';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { GameState } from './store';
-import { LoadGrower } from './store/grower.actions';
+import { LoadGrower } from './store/grower/grower.actions';
+import { Observable } from 'rxjs';
+import { selectSelectedTab, SetSelectedTab, Tab } from './store/ui';
+import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +15,21 @@ import { LoadGrower } from './store/grower.actions';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  title = 'gameofherbs';
+  selectedTab$: Observable<number>;
 
   constructor(
     private store: Store<GameState>,
     private afAuth: AngularFireAuth
   ) {
     this.store.dispatch(new LoadGrower({ uid: 'abcdef' }));
+    this.selectedTab$ = this.store.select(selectSelectedTab);
   }
 
   login() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
+
+  changeSelectedTab($event: number) {
+    this.store.dispatch(new SetSelectedTab({ selectedTab: $event }));
   }
 }

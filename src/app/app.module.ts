@@ -12,7 +12,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './store';
-import { AppEffects } from './store/grower.effects';
+import { AppEffects } from './store/grower/grower.effects';
 import {
   MatTabsModule,
   MatIconModule,
@@ -25,7 +25,8 @@ import {
   faSeedling,
   faWarehouse,
   faHome,
-  faHandHoldingUsd
+  faHandHoldingUsd,
+  faSun
 } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { GreenhouseModule } from './greenhouse';
@@ -73,7 +74,8 @@ export class AppModule {
       faWarehouse,
       faHome,
       faHandHoldingUsd,
-      faGoogle
+      faGoogle,
+      faSun
     );
   }
 }

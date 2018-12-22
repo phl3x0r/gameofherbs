@@ -5,7 +5,8 @@ import {
   GrowerActions,
   UpdateGrower,
   SaveGrower,
-  NewGrower
+  NewGrower,
+  LoadGrower
 } from './grower.actions';
 import { switchMap, map, tap } from 'rxjs/operators';
 import {
@@ -13,7 +14,8 @@ import {
   Action,
   DocumentSnapshot
 } from '@angular/fire/firestore';
-import { GrowerModel } from '@shared/interfaces';
+import { Grower } from '@shared/interfaces';
+import { iif, of } from 'rxjs';
 
 @Injectable()
 export class AppEffects {
@@ -25,14 +27,14 @@ export class AppEffects {
   @Effect()
   getGrower$ = this.actions$.pipe(
     ofType(GrowerActionTypes.LOAD_GROWER),
-    switchMap(action =>
+    switchMap((action: LoadGrower) =>
       this.fireStore
-        .doc<GrowerModel>(`growers/${action.payload.uid}`)
+        .doc<Grower>(`growers/${action.payload.uid}`)
         .snapshotChanges()
         .pipe(
           tap(x => console.log(x)),
           map(
-            (fsAction: Action<DocumentSnapshot<GrowerModel>>) =>
+            (fsAction: Action<DocumentSnapshot<Grower>>) =>
               new UpdateGrower({
                 snapshot: fsAction.payload,
                 uid: action.payload.uid
@@ -45,21 +47,23 @@ export class AppEffects {
   @Effect()
   updateGrower$ = this.actions$.pipe(
     ofType(GrowerActionTypes.UPDATE_GROWER),
-    map(action => action.payload),
-    map(payload =>
-      payload.snapshot.exists
-        ? new SaveGrower({ grower: payload.snapshot.data() })
-        : new NewGrower({ uid: payload.uid })
+    map((action: UpdateGrower) => action.payload),
+    switchMap(payload =>
+      iif(
+        () => payload.snapshot.exists,
+        of(new SaveGrower({ grower: payload.snapshot.data() })),
+        of(new NewGrower({ uid: payload.uid }))
+      )
     )
   );
 
   @Effect({ dispatch: false })
   newGrower$ = this.actions$.pipe(
     ofType(GrowerActionTypes.NEW_GROWER),
-    map(action => action.payload),
+    map((action: NewGrower) => action.payload),
     map(payload =>
       this.fireStore
-        .collection<GrowerModel>(`growers`)
+        .collection<Grower>(`growers`)
         .doc(payload.uid)
         .set({ uid: payload.uid })
     )
