@@ -1,0 +1,24 @@
+<p>seeds works!</p>
+
+<table cdk-table [dataSource]="seeds$">
+  <!-- Id Column -->
+  <ng-container cdkColumnDef="id">
+    <th cdk-header-cell *cdkHeaderCellDef>ID</th>
+    <td cdk-cell *cdkCellDef="let seed">{{ seed.id }}</td>
+  </ng-container>
+
+  <!-- Quality Column -->
+  <ng-container cdkColumnDef="quality">
+    <th cdk-header-cell *cdkHeaderCellDef>Quality</th>
+    <td cdk-cell *cdkCellDef="let seed">{{ seed.quality }}</td>
+  </ng-container>
+
+  <!-- Count Column -->
+  <ng-container cdkColumnDef="count">
+    <th cdk-header-cell *cdkHeaderCellDef>#</th>
+    <td cdk-cell *cdkCellDef="let seed">{{ seed.count }}</td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+</table>

@@ -14,8 +14,8 @@ import {
   Action,
   DocumentSnapshot
 } from '@angular/fire/firestore';
-import { Grower } from '@shared/interfaces';
 import { iif, of } from 'rxjs';
+import { Grower } from 'shared/interfaces';
 
 @Injectable()
 export class AppEffects {

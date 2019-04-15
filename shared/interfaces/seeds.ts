@@ -6,4 +6,5 @@ export interface Seeds {
   count: number;
   pA?: Herb;
   pB?: Herb;
+  quality: number;
 }

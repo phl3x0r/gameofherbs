@@ -1,3 +1,9 @@
-<p>
-  propagation works!
-</p>
+<p>propagation works!</p>
+
+<div class="slot-grid">
+  <app-propagation-slot
+    *ngFor="let slot of (propagationSlots$ | async)"
+    [slot]="slot"
+  ></app-propagation-slot>
+</div>
+<button (click)="openSeedsModal()">VIEW SEEDS</button>

@@ -1,5 +1,5 @@
 <ng-container *ngIf="(afAuth.user | async) as user; else showLogin">
-  <button mat-fab class="sticky-burger">
+  <button mat-fab class="sticky-burger" (click)="logout()">
     <mat-icon aria-label="Example icon-button with a heart icon"
       >favorite</mat-icon
     >

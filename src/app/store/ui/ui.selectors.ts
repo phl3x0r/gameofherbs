@@ -5,7 +5,7 @@ import { createSelector } from '@ngrx/store';
 import { UIState } from './ui.reducer';
 
 export const selectUIState = (state: GameState) => state.ui;
-export const selectGrowerState = (state: GameState) => state.grower;
+export const selectGrower = (state: GameState) => state.grower;
 
 export const selectSelectedTab = createSelector(
   selectUIState,

@@ -1,7 +1,20 @@
 import { GrowerActionTypes, GrowerActions } from './grower.actions';
 import { GrowerState } from './grower.model';
 
-export const initialState = { updating: false, loading: false };
+export const initialState = <GrowerState>{
+  updating: false,
+  loading: false,
+  propagation: {
+    slots: []
+  },
+  funds: 0,
+  greenhouse: {
+    lanes: []
+  },
+  name: 'John Doe',
+  seeds: [],
+  ward: {}
+};
 
 export function growerReducer(
   state: GrowerState = initialState,

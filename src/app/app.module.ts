@@ -42,11 +42,12 @@ import { WardModule } from './ward';
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AppEffects]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production
-    }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    !environment.production
+      ? StoreDevtoolsModule.instrument({
+          maxAge: 25,
+          logOnly: environment.production
+        })
+      : [],
     AngularFireModule.initializeApp(environment.firebase, 'Game of Herbs'),
     AngularFirestoreModule,
     AngularFireAuthModule,

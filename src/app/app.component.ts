@@ -6,7 +6,6 @@ import { GameState } from './store';
 import { LoadGrower } from './store/grower/grower.actions';
 import { Observable } from 'rxjs';
 import { selectSelectedTab, SetSelectedTab, Tab } from './store/ui';
-import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -17,16 +16,17 @@ import { MatTabChangeEvent } from '@angular/material';
 export class AppComponent {
   selectedTab$: Observable<number>;
 
-  constructor(
-    private store: Store<GameState>,
-    private afAuth: AngularFireAuth
-  ) {
+  constructor(private store: Store<GameState>, public afAuth: AngularFireAuth) {
     this.store.dispatch(new LoadGrower({ uid: 'abcdef' }));
     this.selectedTab$ = this.store.select(selectSelectedTab);
   }
 
   login() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
+
+  logout() {
+    this.afAuth.auth.signOut();
   }
 
   changeSelectedTab($event: number) {
