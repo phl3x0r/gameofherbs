@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { PropagationSlot } from 'shared/interfaces';
+import { Slot } from 'shared/interfaces';
 import { selectPropagation } from '../store/grower';
 import { Observable } from 'rxjs';
 import { GameState } from '../store';
@@ -14,9 +14,9 @@ import { SeedsComponent } from './seeds/seeds.component';
   styleUrls: ['./propagation.component.scss']
 })
 export class PropagationComponent implements OnInit {
-  propagationSlots$: Observable<PropagationSlot[]> = this.store
-    .select(selectPropagation)
-    .pipe(map(p => p && p.slots));
+  // propagationSlots$: Observable<Slot[]> = this.store
+  //   .select(selectPropagation)
+  //   .pipe(map(p => p && p.chambers));
 
   constructor(
     private store: Store<GameState>,

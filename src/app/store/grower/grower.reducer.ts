@@ -5,7 +5,7 @@ export const initialState = <GrowerState>{
   updating: false,
   loading: false,
   propagation: {
-    slots: []
+    chambers: []
   },
   funds: 0,
   greenhouse: {

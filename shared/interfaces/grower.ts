@@ -10,16 +10,26 @@ export interface Grower {
   seeds: Seeds[];
 }
 
-export interface Ward {}
-
-export interface Propagation {
-  slots: PropagationSlot[];
+export interface Ward {
+  chambers: WardChamber[];
 }
 
-export interface PropagationSlot {
+export interface Propagation {
+  chambers: PropagationChamber[];
+}
+
+export interface PropagationChamber {
+  slots: Slot[];
+}
+
+export interface Slot {
   herbId?: string;
   cost: number;
   isActive: boolean;
+}
+
+export interface WardChamber {
+  slots: Slot[];
 }
 
 export interface Greenhouse {
