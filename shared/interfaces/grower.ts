@@ -19,12 +19,12 @@ export interface Propagation {
 }
 
 export interface PropagationChamber {
+  level: number;
   slots: Slot[];
 }
 
 export interface Slot {
   herbId?: string;
-  cost: number;
   isActive: boolean;
 }
 
