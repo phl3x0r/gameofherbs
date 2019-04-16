@@ -6,7 +6,6 @@ import { GameState } from './store';
 import { LoadGrower } from './store/grower/grower.actions';
 import { Observable } from 'rxjs';
 import { selectSelectedTab, SetSelectedTab, Tab } from './store/ui';
-import { LoadMarket } from './store/static/static.actions';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +43,6 @@ export class AppComponent {
   }
 
   loadStaticData() {
-    this.store.dispatch(new LoadMarket());
+    // this.store.dispatch(new LoadMarket());
   }
 }

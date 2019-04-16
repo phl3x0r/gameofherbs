@@ -36,7 +36,6 @@ import { MarketModule } from './market';
 import { PropagationModule } from './propagation';
 import { WardModule } from './ward';
 import { SharedModule } from './shared/shared.module';
-import { StaticEffects } from './store/static';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,7 +43,7 @@ import { StaticEffects } from './store/static';
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([GrowerEffects, StaticEffects]),
+    EffectsModule.forRoot([GrowerEffects]),
     !environment.production
       ? StoreDevtoolsModule.instrument({
           maxAge: 25,

@@ -12,7 +12,7 @@ import { map, take } from 'rxjs/operators';
 import { MatBottomSheet, MatDialog } from '@angular/material';
 import { SeedsComponent } from './seeds/seeds.component';
 import { BuyDialogComponent } from '../shared';
-import { selectProduct } from '../store/static';
+import { ProductPriceList } from 'shared';
 
 @Component({
   selector: 'app-propagation',
@@ -37,19 +37,14 @@ export class PropagationComponent implements OnInit {
   }
 
   buyChamber() {
-    this.store
-      .select(selectProduct(ProductTypes.PROPAGATION_CHAMBER))
-      .pipe(take(1))
-      .subscribe(product => {
-        const dialogRef = this.dialog.open(BuyDialogComponent, {
-          width: '250px',
-          data: <ProductBuyOrder>{ product }
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed');
-        });
-      });
+    const dialogRef = this.dialog.open(BuyDialogComponent, {
+      width: '250px',
+      data: <ProductBuyOrder>{
+        product: ProductPriceList[ProductTypes.PROPAGATION_CHAMBER]
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
-
-  openDialog(): void {}
 }
