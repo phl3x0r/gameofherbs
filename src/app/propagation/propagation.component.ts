@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Slot } from 'shared/interfaces';
+import {
+  PropagationChamber,
+  ProductTypes,
+  ProductBuyOrder
+} from 'shared/interfaces';
 import { selectPropagation } from '../store/grower';
 import { Observable } from 'rxjs';
 import { GameState } from '../store';
-import { map, filter } from 'rxjs/operators';
-import { MatBottomSheet } from '@angular/material';
+import { map, take } from 'rxjs/operators';
+import { MatBottomSheet, MatDialog } from '@angular/material';
 import { SeedsComponent } from './seeds/seeds.component';
+import { BuyDialogComponent } from '../shared';
+import { selectProduct } from '../store/static';
 
 @Component({
   selector: 'app-propagation',
@@ -14,13 +20,14 @@ import { SeedsComponent } from './seeds/seeds.component';
   styleUrls: ['./propagation.component.scss']
 })
 export class PropagationComponent implements OnInit {
-  // propagationSlots$: Observable<Slot[]> = this.store
-  //   .select(selectPropagation)
-  //   .pipe(map(p => p && p.chambers));
+  propagationChambers$: Observable<PropagationChamber[]> = this.store
+    .select(selectPropagation)
+    .pipe(map(p => p && p.chambers));
 
   constructor(
     private store: Store<GameState>,
-    private bottomSheet: MatBottomSheet
+    private bottomSheet: MatBottomSheet,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {}
@@ -28,4 +35,21 @@ export class PropagationComponent implements OnInit {
   openSeedsModal() {
     this.bottomSheet.open(SeedsComponent);
   }
+
+  buyChamber() {
+    this.store
+      .select(selectProduct(ProductTypes.PROPAGATION_CHAMBER))
+      .pipe(take(1))
+      .subscribe(product => {
+        const dialogRef = this.dialog.open(BuyDialogComponent, {
+          width: '250px',
+          data: <ProductBuyOrder>{ product }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+        });
+      });
+  }
+
+  openDialog(): void {}
 }

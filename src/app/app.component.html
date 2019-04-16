@@ -1,9 +1,4 @@
 <ng-container *ngIf="(afAuth.user | async) as user; else showLogin">
-  <button mat-fab class="sticky-burger" (click)="logout()">
-    <mat-icon aria-label="Example icon-button with a heart icon"
-      >favorite</mat-icon
-    >
-  </button>
   <mat-tab-group
     headerPosition="below"
     backgroundColor="primary"
@@ -26,7 +21,7 @@
       <ng-template mat-tab-label>
         <fa-icon [icon]="['fas', 'home']"></fa-icon>
       </ng-template>
-      <div class="container"><app-home></app-home></div>
+      <div class="container"><app-home (logout)="logout()"></app-home></div>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
@@ -46,5 +41,6 @@
   <div class="login-container">
     <p>Please login.</p>
     <button (click)="login()">Login with Google</button>
+    <button (click)="loginAnon()">Login anonymously</button>
   </div>
 </ng-template>

@@ -13,7 +13,7 @@ import { Seeds } from 'shared/interfaces';
 })
 export class SeedsComponent implements OnInit {
   seeds$: Observable<Seeds[]> = this.store.select(selectSeeds);
-  displayedColumns = ['id', 'quality', 'count'];
+  displayedColumns = ['name', 'quality', 'count'];
   constructor(private store: Store<GameState>) {}
 
   ngOnInit() {}

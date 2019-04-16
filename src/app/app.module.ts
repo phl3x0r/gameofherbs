@@ -12,11 +12,12 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './store';
-import { AppEffects } from './store/grower/grower.effects';
+import { GrowerEffects } from './store/grower/grower.effects';
 import {
   MatTabsModule,
   MatIconModule,
-  MatButtonModule
+  MatButtonModule,
+  MatDialogModule
 } from '@angular/material';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -34,6 +35,8 @@ import { HomeModule } from './home';
 import { MarketModule } from './market';
 import { PropagationModule } from './propagation';
 import { WardModule } from './ward';
+import { SharedModule } from './shared/shared.module';
+import { StaticEffects } from './store/static';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +44,7 @@ import { WardModule } from './ward';
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([GrowerEffects, StaticEffects]),
     !environment.production
       ? StoreDevtoolsModule.instrument({
           maxAge: 25,
@@ -56,6 +59,10 @@ import { WardModule } from './ward';
     MatTabsModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
+
+    // shared
+    SharedModule,
 
     // app modules
     GreenhouseModule,
@@ -64,7 +71,6 @@ import { WardModule } from './ward';
     PropagationModule,
     WardModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

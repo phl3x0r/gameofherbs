@@ -4,7 +4,7 @@ import { Grower } from 'shared/interfaces';
 
 export enum GrowerActionTypes {
   LOAD_GROWER = '[Grower] Load from Firestore',
-  UPDATE_GROWER = '[Grower] Updated from Firestore',
+  UPDATE_GROWER = '[Grower] Update from Firestore',
   SAVE_GROWER = '[Grower] Save to Store',
   NEW_GROWER = '[Grower] Create New Grower on Firestore',
   CLEAR_GROWER = '[Grower] Clear from Store'

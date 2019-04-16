@@ -1,9 +1,13 @@
 <p>propagation works!</p>
 
-<div class="slot-grid">
-  <!-- <app-propagation-slot
-    *ngFor="let slot of (propagationSlots$ | async)"
-    [slot]="slot"
-  ></app-propagation-slot> -->
-</div>
+<ng-container *ngIf="(propagationChambers$ | async) as chambers">
+  <app-propagation-chamber
+    *ngFor="let chamber of chambers"
+    [chamber]="chamber"
+  ></app-propagation-chamber>
+  <div *ngIf="!chambers || !chambers.length">
+    You don't have any propagation chambers.
+    <button (click)="buyChamber()">Buy chamber</button>
+  </div>
+</ng-container>
 <button (click)="openSeedsModal()">VIEW SEEDS</button>

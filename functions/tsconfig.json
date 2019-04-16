@@ -5,8 +5,9 @@
     "noImplicitReturns": true,
     "outDir": "lib",
     "sourceMap": true,
-    "target": "es6"
+    "target": "es6",
+    "resolveJsonModule": true
   },
   "compileOnSave": true,
-  "files": ["index.ts"]
+  "include": ["src", "index.ts"]
 }

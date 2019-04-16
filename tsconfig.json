@@ -15,7 +15,8 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@grower": ["src/app/store/grower"]
-    }
+    },
+    "resolveJsonModule": true
   },
   "angularCompilerOptions": {
     "enableIvy": false

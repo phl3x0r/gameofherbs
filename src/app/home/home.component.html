@@ -1,3 +1,19 @@
-<p>home works!</p>
+<ng-container *ngIf="(grower$ | async) as g">
+  <ng-container *ngIf="!g.loading; else loadingTemplate">
+    <h1>hello {{ g.name }}</h1>
+    <button mat-fab class="sticky-burger" (click)="logout.emit()">
+      LOGOUT
+    </button>
+    <div>
+      <mat-card>
+        <div class="info-line">
+          <span>FUNDS:</span> <span>{{ g.funds || 0 }}€</span>
+        </div>
+      </mat-card>
+    </div>
+  </ng-container>
+</ng-container>
 
-<h1 *ngIf="(grower$ | async) as g">hello {{ g.name }}</h1>
+<ng-template #loadingTemplate>
+  <div class="spinner-container"><mat-spinner></mat-spinner></div>
+</ng-template>

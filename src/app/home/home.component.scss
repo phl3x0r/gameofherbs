@@ -1,0 +1,15 @@
+.info-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  span {
+    display: inline-flex;
+  }
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}

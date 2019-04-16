@@ -4,10 +4,10 @@ export interface Grower {
   uid?: string;
   name: string;
   funds: number;
-  propagation: Propagation;
-  ward: Ward;
-  greenhouse: Greenhouse;
-  seeds: Seeds[];
+  propagation?: Propagation;
+  ward?: Ward;
+  greenhouse?: Greenhouse;
+  seeds?: Seeds[];
 }
 
 export interface Ward {

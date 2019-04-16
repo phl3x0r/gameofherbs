@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PropagationComponent } from './propagation.component';
-import { PropagationSlotComponent } from './propagation-slot/propagation-slot.component';
+import { PropagationChamberComponent } from './propagation-chamber/propagation-chamber.component';
 import { SeedsComponent } from './seeds/seeds.component';
 import { CdkTableModule } from '@angular/cdk/table';
-import { MatBottomSheetModule } from '@angular/material';
+import { MatBottomSheetModule, MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     PropagationComponent,
-    PropagationSlotComponent,
+    PropagationChamberComponent,
     SeedsComponent
   ],
-  imports: [CommonModule, CdkTableModule, MatBottomSheetModule],
+  imports: [
+    CommonModule,
+    CdkTableModule,
+    MatBottomSheetModule,
+    MatDialogModule
+  ],
   exports: [PropagationComponent],
   entryComponents: [SeedsComponent]
 })

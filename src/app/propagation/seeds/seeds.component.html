@@ -2,9 +2,9 @@
 
 <table cdk-table [dataSource]="seeds$">
   <!-- Id Column -->
-  <ng-container cdkColumnDef="id">
-    <th cdk-header-cell *cdkHeaderCellDef>ID</th>
-    <td cdk-cell *cdkCellDef="let seed">{{ seed.id }}</td>
+  <ng-container cdkColumnDef="name">
+    <th cdk-header-cell *cdkHeaderCellDef>Name</th>
+    <td cdk-cell *cdkCellDef="let seed">{{ seed.name }}</td>
   </ng-container>
 
   <!-- Quality Column -->

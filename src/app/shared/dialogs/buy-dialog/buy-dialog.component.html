@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Buy {{ productInfo?.name || 'unknown' }}</h2>
+<mat-dialog-content class="mat-typography"
+  >Cost {{ productInfo?.cost || 0 }}€</mat-dialog-content
+>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="ok()" cdkFocusInitial>Buy</button>
+</mat-dialog-actions>
