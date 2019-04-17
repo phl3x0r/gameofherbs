@@ -78,11 +78,11 @@ export class GrowerEffects {
           });
         }
       }
+      return new BuyProductFail();
     })
   );
 
-  @Effect()
-  buyProductOnFirebas$ = this.actions$.pipe(
+  @Effect() buyProductOnFirebas$ = this.actions$.pipe(
     ofType(GrowerActionTypes.BUY_PRODUCT_SUCCESS),
     switchMap(action =>
       this.fireFunctions
