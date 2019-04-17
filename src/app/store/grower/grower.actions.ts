@@ -10,7 +10,8 @@ export enum GrowerActionTypes {
   CLEAR_GROWER = '[Grower] Clear from Store',
   BUY_PRODUCT = '[Grower] Buy Product',
   BUY_PRODUCT_SUCCESS = '[Grower] Buy Product Success',
-  BUY_PRODUCT_FAIL = '[Grower] Buy Product Fail'
+  BUY_PRODUCT_FAIL = '[Grower] Buy Product Fail',
+  BUY_PRODUCT_ON_FIRESTORE = '[Grower] Buy Product On Firestore'
 }
 
 export class LoadGrower implements Action {
@@ -57,6 +58,11 @@ export class BuyProductSuccess implements Action {
   ) {}
 }
 
+export class BuyProductOnFirestoreSuccess implements Action {
+  readonly type = GrowerActionTypes.BUY_PRODUCT_ON_FIRESTORE;
+  constructor() {}
+}
+
 export class BuyProductFail implements Action {
   readonly type = GrowerActionTypes.BUY_PRODUCT_FAIL;
   constructor() {}
@@ -70,4 +76,5 @@ export type GrowerActions =
   | ClearGrower
   | BuyProduct
   | BuyProductSuccess
-  | BuyProductFail;
+  | BuyProductFail
+  | BuyProductOnFirestoreSuccess;

@@ -1,1 +1,9 @@
-<h1>this is a chamber!</h1>
+<h1>this is a level {{ chamber.level }} chamber!</h1>
+
+<div class="chamber" [class.inactive]="!chamber.id">
+  <div
+    *ngFor="let slot of chamber.slots"
+    class="slot"
+    [class.inactive]="!chamber.id"
+  ></div>
+</div>

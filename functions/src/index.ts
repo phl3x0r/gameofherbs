@@ -33,7 +33,7 @@ export const buyProduct = functions.https.onCall(
     return grower.get().then(growerSnap => {
       if (checkGameRules(order.productType, 0, growerSnap.data())) {
         const products = growerSnap.get('products') || {};
-        const newProduct = { ...product.factory(), id: new v4() };
+        const newProduct = { ...product.factory(), id: v4() };
         return grower.set({
           ...growerSnap.data(),
           funds: growerSnap.get('funds') - cost,

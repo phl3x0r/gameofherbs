@@ -6,14 +6,16 @@ import {
   SaveGrower,
   LoadGrower,
   BuyProductSuccess,
-  BuyProductFail
+  BuyProductFail,
+  BuyProductOnFirestoreSuccess
 } from './grower.actions';
 import {
   switchMap,
   map,
   filter,
   withLatestFrom,
-  catchError
+  catchError,
+  mapTo
 } from 'rxjs/operators';
 import {
   AngularFirestore,
@@ -87,7 +89,10 @@ export class GrowerEffects {
         .httpsCallable('buyProduct')({
           productType: action.payload.productType
         })
-        .pipe(catchError(err => of(new BuyProductFail())))
+        .pipe(
+          mapTo(new BuyProductOnFirestoreSuccess()),
+          catchError(err => of(new BuyProductFail()))
+        )
     )
   );
 }

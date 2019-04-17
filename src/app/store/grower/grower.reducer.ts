@@ -38,7 +38,8 @@ export function growerReducer(
             ...state.products[ProductTypes.PROPAGATION_CHAMBER],
             action.payload.product
           ]
-        }
+        },
+        funds: state.funds - action.payload.cost
       };
 
     default:
