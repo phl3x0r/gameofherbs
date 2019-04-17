@@ -4,7 +4,7 @@ import { GameState } from 'src/app/store';
 import { selectSeeds } from '@grower';
 import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs';
-import { Seeds } from 'shared/interfaces';
+import { Seeds } from '@shared';
 
 @Component({
   selector: 'app-seeds',

@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  PropagationChamber,
-  ProductTypes,
-  ProductBuyOrder
-} from 'shared/interfaces';
-import { selectPropagation } from '../store/grower';
+import { PropagationChamber, ProductTypes, ProductBuyOrder } from '@shared';
 import { Observable } from 'rxjs';
 import { GameState } from '../store';
 import { map, take } from 'rxjs/operators';
 import { MatBottomSheet, MatDialog } from '@angular/material';
 import { SeedsComponent } from './seeds/seeds.component';
 import { BuyDialogComponent } from '../shared';
+import { selectProduct as selectProducts } from '@grower';
 
 @Component({
   selector: 'app-propagation',
@@ -20,8 +16,10 @@ import { BuyDialogComponent } from '../shared';
 })
 export class PropagationComponent implements OnInit {
   propagationChambers$: Observable<PropagationChamber[]> = this.store
-    .select(selectPropagation)
-    .pipe(map(p => p && p.chambers));
+    .select(
+      selectProducts<PropagationChamber>(ProductTypes.PROPAGATION_CHAMBER)
+    )
+    .pipe(map(p => p));
 
   constructor(
     private store: Store<GameState>,

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { ProductBuyOrder } from 'shared/interfaces';
-import { getProductInfo, ProductInfo } from 'shared/static/game-rules';
+import { ProductBuyOrder } from '@shared';
+import { getProductInfo, ProductInfo } from '@shared';
 import { Store } from '@ngrx/store';
 import { GameState } from 'src/app/store';
 import { BuyProduct } from '@grower';

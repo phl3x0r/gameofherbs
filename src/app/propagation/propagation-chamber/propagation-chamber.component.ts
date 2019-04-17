@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { PropagationChamber } from 'shared/interfaces';
+import { PropagationChamber } from '@shared';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

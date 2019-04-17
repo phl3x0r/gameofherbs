@@ -1,6 +1,13 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { Grower, ProductBuyOrder, GameRules } from '../../shared';
+import {
+  Grower,
+  ProductBuyOrder,
+  GameRules,
+  calculateProductCost,
+  checkGameRules
+} from '../../shared';
+import { v4 } from 'uuid';
 
 admin.initializeApp(functions.config().firebase);
 
@@ -21,12 +28,23 @@ export const buyProduct = functions.https.onCall(
         'no product for order: ' + order.productType
       );
     }
-    const cost = product.cost;
+    const cost = calculateProductCost(order.productType, 0);
     const grower = admin.firestore().doc(`growers/${context.auth.uid}`);
     return grower.get().then(growerSnap => {
-      const funds = growerSnap.get('funds') as number;
-      if (funds >= cost) {
-        return grower.set({ ...growerSnap.data(), funds: funds - cost });
+      if (checkGameRules(order.productType, 0, growerSnap.data())) {
+        const products = growerSnap.get('products') || {};
+        const newProduct = { ...product.factory(), id: new v4() };
+        return grower.set({
+          ...growerSnap.data(),
+          funds: growerSnap.get('funds') - cost,
+          products: {
+            ...products,
+            [order.productType]: [
+              ...(products[order.productType] || []),
+              newProduct
+            ]
+          }
+        });
       } else {
         throw new functions.https.HttpsError(
           'failed-precondition',

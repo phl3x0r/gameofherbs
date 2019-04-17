@@ -1,10 +1,4 @@
-import {
-  ProductTypes,
-  PropagationChamber,
-  Slot,
-  Product
-} from 'shared/interfaces';
-import { GrowerState } from '@grower';
+import { ProductTypes, PropagationChamber, Slot, Product } from '../interfaces';
 
 export const GameRules = {
   products: {
@@ -50,6 +44,13 @@ export const GameRules = {
   }
 };
 
+export const calculateProductCost = (product: ProductTypes, level: number) => {
+  const productRules = GameRules.products[product];
+  const productCost =
+    productRules.cost.baseCost * Math.pow(productRules.cost.multiplier, level);
+  return productCost;
+};
+
 export const getProductInfo = (
   productType: ProductTypes,
   level = 0
@@ -65,22 +66,14 @@ export const getProductInfo = (
 export const checkGameRules = (
   product: ProductTypes,
   level: number,
-  growerState: GrowerState
+  products: { [key: string]: Product[] }
 ) => {
   const productRules = GameRules.products[product];
   const belowMax =
     level === 0
-      ? !growerState.products[product] ||
-        growerState.products[product].length < productRules.maxAmount
+      ? !products[product] || products[product].length < productRules.maxAmount
       : level < productRules.maxLevel;
   return belowMax;
-};
-
-export const calculateProductCost = (product: ProductTypes, level: number) => {
-  const productRules = GameRules.products[product];
-  const productCost =
-    productRules.cost.baseCost * Math.pow(level, productRules.cost.multiplier);
-  return productCost;
 };
 
 export interface ProductRules {

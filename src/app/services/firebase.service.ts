@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProductBuyOrder } from 'shared/interfaces';
+import { ProductBuyOrder } from '@shared';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';

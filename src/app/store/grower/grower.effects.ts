@@ -13,7 +13,6 @@ import {
   map,
   filter,
   withLatestFrom,
-  switchMapTo,
   catchError
 } from 'rxjs/operators';
 import {
@@ -21,15 +20,15 @@ import {
   Action,
   DocumentSnapshot
 } from '@angular/fire/firestore';
-import { Grower } from 'shared/interfaces';
 import { GameState } from '..';
 import { Store } from '@ngrx/store';
 import { selectGrower } from '../ui';
 import {
   GameRules,
   checkGameRules,
-  calculateProductCost
-} from 'shared/static/game-rules';
+  calculateProductCost,
+  Grower
+} from '@shared';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { of } from 'rxjs';
 
@@ -67,7 +66,7 @@ export class GrowerEffects {
     ofType(GrowerActionTypes.BUY_PRODUCT),
     withLatestFrom(this.store.select(selectGrower)),
     map(([action, grower]) => {
-      if (checkGameRules(action.payload.productType, 0, grower)) {
+      if (checkGameRules(action.payload.productType, 0, grower.products)) {
         const cost = calculateProductCost(action.payload.productType, 0);
         if (grower.funds >= cost) {
           return new BuyProductSuccess({

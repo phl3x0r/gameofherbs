@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { DocumentSnapshot } from '@angular/fire/firestore';
-import { Grower, ProductTypes, Product } from 'shared/interfaces';
+import { Grower, ProductTypes, Product } from '@shared';
 
 export enum GrowerActionTypes {
   LOAD_GROWER = '[Grower] Load from Firestore',

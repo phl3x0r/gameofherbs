@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { GameState } from '../store';
 import { Observable } from 'rxjs';
-import { Grower } from 'shared/interfaces';
+import { Grower } from '@shared';
 import { selectGrower } from '../store/ui';
 
 @Component({
