@@ -1,13 +1,16 @@
 import { Action } from '@ngrx/store';
 import { DocumentSnapshot } from '@angular/fire/firestore';
-import { Grower } from 'shared/interfaces';
+import { Grower, ProductTypes, Product } from 'shared/interfaces';
 
 export enum GrowerActionTypes {
   LOAD_GROWER = '[Grower] Load from Firestore',
   UPDATE_GROWER = '[Grower] Update from Firestore',
   SAVE_GROWER = '[Grower] Save to Store',
   NEW_GROWER = '[Grower] Create New Grower on Firestore',
-  CLEAR_GROWER = '[Grower] Clear from Store'
+  CLEAR_GROWER = '[Grower] Clear from Store',
+  BUY_PRODUCT = '[Grower] Buy Product',
+  BUY_PRODUCT_SUCCESS = '[Grower] Buy Product Success',
+  BUY_PRODUCT_FAIL = '[Grower] Buy Product Fail'
 }
 
 export class LoadGrower implements Action {
@@ -37,9 +40,34 @@ export class ClearGrower implements Action {
   constructor() {}
 }
 
+// buy / sell
+export class BuyProduct implements Action {
+  readonly type = GrowerActionTypes.BUY_PRODUCT;
+  constructor(public payload: { productType: ProductTypes }) {}
+}
+
+export class BuyProductSuccess implements Action {
+  readonly type = GrowerActionTypes.BUY_PRODUCT_SUCCESS;
+  constructor(
+    public payload: {
+      productType: ProductTypes;
+      product: Product;
+      cost: number;
+    }
+  ) {}
+}
+
+export class BuyProductFail implements Action {
+  readonly type = GrowerActionTypes.BUY_PRODUCT_FAIL;
+  constructor() {}
+}
+
 export type GrowerActions =
   | LoadGrower
   | UpdateGrower
   | SaveGrower
   | NewGrower
-  | ClearGrower;
+  | ClearGrower
+  | BuyProduct
+  | BuyProductSuccess
+  | BuyProductFail;

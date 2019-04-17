@@ -1,26 +1,30 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { FireBaseService } from '../../../services/firebase.service';
-import { ProductBuyOrder, Product } from 'shared/interfaces';
-import { ProductPriceList } from 'shared';
+import { ProductBuyOrder } from 'shared/interfaces';
+import { getProductInfo, ProductInfo } from 'shared/static/game-rules';
+import { Store } from '@ngrx/store';
+import { GameState } from 'src/app/store';
+import { BuyProduct } from '@grower';
 
 @Component({
   selector: 'app-buy-dialog',
   templateUrl: 'buy-dialog.component.html'
 })
 export class BuyDialogComponent {
-  productInfo: Product;
+  productInfo: ProductInfo;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ProductBuyOrder,
     private dialogRef: MatDialogRef<BuyDialogComponent>,
-    private fb: FireBaseService
+    private store: Store<GameState>
   ) {
     console.log(data);
-    this.productInfo = ProductPriceList[data.product.id];
+    this.productInfo = getProductInfo(data.productType);
   }
 
   ok() {
-    this.fb.buyProduct(this.data).subscribe(() => this.dialogRef.close());
+    this.store.dispatch(new BuyProduct({ productType: this.data.productType }));
+    this.dialogRef.close();
+    // this.fb.buyProduct(this.data).subscribe(() => this.dialogRef.close());
   }
 }

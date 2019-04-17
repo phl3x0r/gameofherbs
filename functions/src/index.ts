@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { Grower, ProductBuyOrder, ProductPriceList } from '../../shared';
+import { Grower, ProductBuyOrder, GameRules } from '../../shared';
 
 admin.initializeApp(functions.config().firebase);
 
@@ -14,11 +14,11 @@ export const createGrower = functions.auth.user().onCreate((user, _context) => {
 
 export const buyProduct = functions.https.onCall(
   (order: ProductBuyOrder, context) => {
-    const product = ProductPriceList[order.product.id];
+    const product = GameRules.products[order.productType];
     if (!product) {
       throw new functions.https.HttpsError(
         'not-found',
-        'no product for order: ' + order.product.id
+        'no product for order: ' + order.productType
       );
     }
     const cost = product.cost;

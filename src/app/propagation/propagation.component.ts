@@ -12,7 +12,6 @@ import { map, take } from 'rxjs/operators';
 import { MatBottomSheet, MatDialog } from '@angular/material';
 import { SeedsComponent } from './seeds/seeds.component';
 import { BuyDialogComponent } from '../shared';
-import { ProductPriceList } from 'shared';
 
 @Component({
   selector: 'app-propagation',
@@ -40,7 +39,7 @@ export class PropagationComponent implements OnInit {
     const dialogRef = this.dialog.open(BuyDialogComponent, {
       width: '250px',
       data: <ProductBuyOrder>{
-        product: ProductPriceList[ProductTypes.PROPAGATION_CHAMBER]
+        productType: ProductTypes.PROPAGATION_CHAMBER
       }
     });
     dialogRef.afterClosed().subscribe(result => {

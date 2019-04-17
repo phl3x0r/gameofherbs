@@ -3,25 +3,43 @@ import { Effect, ofType, Actions } from '@ngrx/effects';
 import {
   GrowerActionTypes,
   GrowerActions,
-  UpdateGrower,
   SaveGrower,
-  NewGrower,
-  LoadGrower
+  LoadGrower,
+  BuyProductSuccess,
+  BuyProductFail
 } from './grower.actions';
-import { switchMap, map, tap, filter } from 'rxjs/operators';
+import {
+  switchMap,
+  map,
+  filter,
+  withLatestFrom,
+  switchMapTo,
+  catchError
+} from 'rxjs/operators';
 import {
   AngularFirestore,
   Action,
   DocumentSnapshot
 } from '@angular/fire/firestore';
-import { iif, of } from 'rxjs';
 import { Grower } from 'shared/interfaces';
+import { GameState } from '..';
+import { Store } from '@ngrx/store';
+import { selectGrower } from '../ui';
+import {
+  GameRules,
+  checkGameRules,
+  calculateProductCost
+} from 'shared/static/game-rules';
+import { AngularFireFunctions } from '@angular/fire/functions';
+import { of } from 'rxjs';
 
 @Injectable()
 export class GrowerEffects {
   constructor(
     private actions$: Actions<GrowerActions>,
-    private fireStore: AngularFirestore
+    private fireStore: AngularFirestore,
+    private store: Store<GameState>,
+    private fireFunctions: AngularFireFunctions
   ) {}
 
   @Effect()
@@ -43,28 +61,34 @@ export class GrowerEffects {
     )
   );
 
-  // @Effect()
-  // updateGrower$ = this.actions$.pipe(
-  //   ofType(GrowerActionTypes.UPDATE_GROWER),
-  //   map((action: UpdateGrower) => action.payload),
-  //   switchMap(payload =>
-  //     iif(
-  //       () => payload.snapshot.exists,
-  //       of(new SaveGrower({ grower: payload.snapshot.data() })),
-  //       of(new NewGrower({ uid: payload.uid }))
-  //     )
-  //   )
-  // );
+  // buy / sell
+  @Effect()
+  buyProduct$ = this.actions$.pipe(
+    ofType(GrowerActionTypes.BUY_PRODUCT),
+    withLatestFrom(this.store.select(selectGrower)),
+    map(([action, grower]) => {
+      if (checkGameRules(action.payload.productType, 0, grower)) {
+        const cost = calculateProductCost(action.payload.productType, 0);
+        if (grower.funds >= cost) {
+          return new BuyProductSuccess({
+            productType: action.payload.productType,
+            product: GameRules.products[action.payload.productType].factory(),
+            cost
+          });
+        }
+      }
+    })
+  );
 
-  // @Effect({ dispatch: false })
-  // newGrower$ = this.actions$.pipe(
-  //   ofType(GrowerActionTypes.NEW_GROWER),
-  //   map((action: NewGrower) => action.payload),
-  //   map(payload =>
-  //     this.fireStore
-  //       .collection<Grower>(`growers`)
-  //       .doc(payload.uid)
-  //       .set({ uid: payload.uid })
-  //   )
-  // );
+  @Effect()
+  buyProductOnFirebas$ = this.actions$.pipe(
+    ofType(GrowerActionTypes.BUY_PRODUCT_SUCCESS),
+    switchMap(action =>
+      this.fireFunctions
+        .httpsCallable('buyProduct')({
+          productType: action.payload.productType
+        })
+        .pipe(catchError(err => of(new BuyProductFail())))
+    )
+  );
 }

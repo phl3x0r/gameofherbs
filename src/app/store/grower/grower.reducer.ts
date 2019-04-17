@@ -1,18 +1,15 @@
 import { GrowerActionTypes, GrowerActions } from './grower.actions';
 import { GrowerState } from './grower.model';
+import { ProductTypes } from 'shared';
 
 export const initialState = <GrowerState>{
   loading: false,
-  propagation: {
-    chambers: []
+  products: {
+    [ProductTypes.PROPAGATION_CHAMBER]: []
   },
   funds: 0,
-  greenhouse: {
-    lanes: []
-  },
   name: 'John Doe',
-  seeds: [],
-  ward: {}
+  seeds: []
 };
 
 export function growerReducer(
@@ -31,6 +28,18 @@ export function growerReducer(
 
     case GrowerActionTypes.CLEAR_GROWER:
       return initialState;
+
+    // buy / sell
+    case GrowerActionTypes.BUY_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        products: {
+          [action.payload.productType]: [
+            ...state.products[ProductTypes.PROPAGATION_CHAMBER],
+            action.payload.product
+          ]
+        }
+      };
 
     default:
       return state;

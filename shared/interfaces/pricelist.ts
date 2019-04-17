@@ -2,15 +2,15 @@ export interface Pricelist {
   [key: string]: Product;
 }
 export interface Product {
-  id: ProductTypes;
-  name: string;
-  cost: number;
-  description: string;
+  id?: ProductTypes;
+  name?: string;
+  description?: string;
+  enabled: boolean;
 }
 export enum ProductTypes {
   PROPAGATION_CHAMBER = 'propagationChamber'
 }
 
 export interface ProductBuyOrder {
-  product: Product;
+  productType: ProductTypes;
 }

@@ -1,1 +1,1 @@
-export * from './product-price-list';
+export * from './game-rules';
